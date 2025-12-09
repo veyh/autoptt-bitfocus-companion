@@ -1,0 +1,26 @@
+{
+	"id": "autoptt",
+	"name": "autoptt",
+	"shortname": "autoptt",
+	"description": "Bitfocus Companion plugin for AutoPTT",
+	"version": "1.0.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/veyh/autoptt-bitfocus-companion.git",
+	"bugs": "https://github.com/veyh/autoptt-bitfocus-companion/issues",
+	"maintainers": [
+		{
+			"name": "Janne Virtala",
+			"email": "janne@autoptt.com"
+		}
+	],
+	"runtime": {
+		"type": "node22",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../dist/main.js"
+	},
+	"legacyIds": [],
+	"manufacturer": "Janne Virtala",
+	"products": ["AutoPTT"],
+	"keywords": []
+}
