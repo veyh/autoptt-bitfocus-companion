@@ -3,7 +3,7 @@
 	"name": "autoptt",
 	"shortname": "autoptt",
 	"description": "Bitfocus Companion plugin for AutoPTT",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/veyh/autoptt-bitfocus-companion.git",
 	"bugs": "https://github.com/veyh/autoptt-bitfocus-companion/issues",
