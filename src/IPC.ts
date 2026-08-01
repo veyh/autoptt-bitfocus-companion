@@ -57,8 +57,9 @@ export default class IPC {
   // 4 - AutoPTT 2.11.0
   // 5 - AutoPTT 3.0.0
   // 6 - AutoPTT 4.0.0
+  // 7 - AutoPTT 5.0.0
 
-  static VERSION = 6;
+  static VERSION = 7;
 
   isCompatible() {
     const server = this.serverIpcVersion;
@@ -89,6 +90,10 @@ export default class IPC {
     if (server === 5) {
       // FakerInput status won't be available but that's fine
       return true;
+    }
+
+    if (server === 6) {
+      return true; // v6 uses keyGroups, v7 uses keys
     }
 
     return false; // fallback for unknown versions
@@ -401,16 +406,30 @@ export default class IPC {
     return this.settings?.profile ?? 0;
   }
 
-  getKeyGroups() {
+  countPttKeys() {
     if (!this.settings) {
-      return [];
+      return 0;
     }
 
-    if (!this.supportsProfiles()) {
-      return this.settings.keyGroups;
+    if (this.serverIpcVersion < 5) {
+      return this.settings.keyGroups.length;
     }
 
-    return this.getCurrentProfile()!.settings!.keyGroups;
+    const ps = this.getCurrentProfile()!.settings;
+
+    if (this.serverIpcVersion < 7) {
+      return ps!.keyGroups.length ?? 0;
+    }
+
+    let count = 0;
+
+    for (const key of ps!.keys) {
+      if (key.keyPushToTalk) {
+        count += 1;
+      }
+    }
+
+    return count;
   }
 
   getProfileIdsAndNames() {
